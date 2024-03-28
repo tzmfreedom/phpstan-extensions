@@ -44,19 +44,19 @@ final class VisibleForTestingRuleTest extends RuleTestCase
             [__DIR__ . '/Fixtures/Failure.php'],
             [
                 [
-                    sprintf('VisibleForTesting attributed method Tzmfreedom\Tests\Fixtures\Base::visibleForTestingWithPhpDoc should be called in private scope on no testing environment'),
+                    sprintf('VisibleForTesting annotated method Tzmfreedom\Tests\Fixtures\Base::visibleForTestingWithPhpDoc should be called in private scope on no testing environment'),
                     10
                 ],
                 [
-                    sprintf('VisibleForTesting attributed method Tzmfreedom\Tests\Fixtures\Base::visibleForTestingWithAttribute should be called in private scope on no testing environment'),
+                    sprintf('VisibleForTesting annotated method Tzmfreedom\Tests\Fixtures\Base::visibleForTestingWithAttribute should be called in private scope on no testing environment'),
                     11
                 ],
                 [
-                    sprintf('VisibleForTesting attributed method Tzmfreedom\Tests\Fixtures\Base::visibleForTestingWithPhpDoc should be called in private scope on no testing environment'),
+                    sprintf('VisibleForTesting annotated method Tzmfreedom\Tests\Fixtures\Base::visibleForTestingWithPhpDoc should be called in private scope on no testing environment'),
                     18
                 ],
                 [
-                    sprintf('VisibleForTesting attributed method Tzmfreedom\Tests\Fixtures\Base::visibleForTestingWithAttribute should be called in private scope on no testing environment'),
+                    sprintf('VisibleForTesting annotated method Tzmfreedom\Tests\Fixtures\Base::visibleForTestingWithAttribute should be called in private scope on no testing environment'),
                     19
                 ],
             ]

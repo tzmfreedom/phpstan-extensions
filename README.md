@@ -22,7 +22,7 @@ class Foo
 }
 
 (new Foo)->exampleWithAttribute();
-// VisibleForTesting attributed method Foo::visibleForTestingWithAttribute should be called in private scope on no testing environment
+// VisibleForTesting annotated method Foo::visibleForTestingWithAttribute should be called in private scope on no testing environment
 ```
 
 ## Installation
