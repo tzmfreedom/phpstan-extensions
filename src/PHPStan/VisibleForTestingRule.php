@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace VisibleForTesting;
+namespace Tzmfreedom\PHPStan;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
@@ -10,6 +10,7 @@ use PHPStan\Reflection\ExtendedMethodReflection;
 use PHPStan\Rules\Methods\MethodCallCheck;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\FileTypeMapper;
+use Tzmfreedom\Attributes\VisibleForTesting;
 
 class VisibleForTestingRule implements Rule
 {

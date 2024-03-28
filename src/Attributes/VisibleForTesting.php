@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace VisibleForTesting;
+namespace Tzmfreedom\Attributes;
 
 use Attribute;
 

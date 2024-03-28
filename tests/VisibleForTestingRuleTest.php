@@ -2,12 +2,12 @@
 
 namespace Tests;
 
-use VisibleForTesting\VisibleForTestingRule;
 use PHPStan\Rules\Methods\MethodCallCheck;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleLevelHelper;
 use PHPStan\Testing\RuleTestCase;
 use PHPStan\Type\FileTypeMapper;
+use Tzmfreedom\PHPStan\VisibleForTestingRule;
 
 final class VisibleForTestingRuleTest extends RuleTestCase
 {
@@ -44,19 +44,19 @@ final class VisibleForTestingRuleTest extends RuleTestCase
             [__DIR__ . '/Fixtures/Failure.php'],
             [
                 [
-                    sprintf('VisibleForTesting annotated method Tests\Fixtures\Base::visibleForTestingWithPhpDoc should be called in private scope on no testing environment'),
+                    sprintf('VisibleForTesting annotated method Tzmfreedom\Tests\Fixtures\Base::visibleForTestingWithPhpDoc should be called in private scope on no testing environment'),
                     10
                 ],
                 [
-                    sprintf('VisibleForTesting annotated method Tests\Fixtures\Base::visibleForTestingWithAttribute should be called in private scope on no testing environment'),
+                    sprintf('VisibleForTesting annotated method Tzmfreedom\Tests\Fixtures\Base::visibleForTestingWithAttribute should be called in private scope on no testing environment'),
                     11
                 ],
                 [
-                    sprintf('VisibleForTesting annotated method Tests\Fixtures\Base::visibleForTestingWithPhpDoc should be called in private scope on no testing environment'),
+                    sprintf('VisibleForTesting annotated method Tzmfreedom\Tests\Fixtures\Base::visibleForTestingWithPhpDoc should be called in private scope on no testing environment'),
                     18
                 ],
                 [
-                    sprintf('VisibleForTesting annotated method Tests\Fixtures\Base::visibleForTestingWithAttribute should be called in private scope on no testing environment'),
+                    sprintf('VisibleForTesting annotated method Tzmfreedom\Tests\Fixtures\Base::visibleForTestingWithAttribute should be called in private scope on no testing environment'),
                     19
                 ],
             ]

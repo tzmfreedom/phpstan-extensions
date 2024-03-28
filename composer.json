@@ -2,12 +2,12 @@
     "name": "tzmfreedom/phpstan-visible-for-testing",
     "autoload": {
         "psr-4": {
-            "VisibleForTesting\\": "src/"
+            "Tzmfreedom\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Tzmfreedom\\Tests\\": "tests/"
         }
     },
     "authors": [

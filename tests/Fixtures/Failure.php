@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Fixtures;
+namespace Tzmfreedom\Tests\Fixtures;
 
 class Failure
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Fixtures;
+namespace Tzmfreedom\Tests\Fixtures;
 
-use VisibleForTesting\VisibleForTesting;
+use Tzmfreedom\Attributes\VisibleForTesting;
 
 class Base
 {
