@@ -1,0 +1,5 @@
+.php-version
+.phpunit.result.cache
+
+vendor/
+composer.lock

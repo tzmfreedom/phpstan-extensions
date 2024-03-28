@@ -1,0 +1,23 @@
+{
+    "name": "tzmfreedom/phpstan-visible-for-testing",
+    "autoload": {
+        "psr-4": {
+            "VisibleForTesting\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "tzmfreedom",
+            "email": "makoto_tajitsu@hotmail.co.jp"
+        }
+    ],
+    "require": {
+        "phpstan/phpstan": "^1.10",
+        "phpunit/phpunit": "^9.6"
+    }
+}
