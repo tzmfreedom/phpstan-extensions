@@ -7,8 +7,15 @@ class Failure
     public function run(): void
     {
         $base = new Base;
-        $base->visibleForTesting();
+        $base->visibleForTestingWithPhpDoc();
+        $base->visibleForTestingWithAttribute();
         $base->noVisibleForTesting();
         $base->noVisibleForTestingWithPHPDoc();
     }
 }
+
+$base = new Base;
+$base->visibleForTestingWithPhpDoc();
+$base->visibleForTestingWithAttribute();
+$base->noVisibleForTesting();
+$base->noVisibleForTestingWithPHPDoc();

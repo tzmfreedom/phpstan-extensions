@@ -44,10 +44,29 @@ final class VisibleForTestingRuleTest extends RuleTestCase
             [__DIR__ . '/Fixtures/Failure.php'],
             [
                 [
-                    sprintf('VisibleForTesting annotated method Tests\Fixtures\Base::visibleForTesting should be called in private scope on no testing environment'),
+                    sprintf('VisibleForTesting annotated method Tests\Fixtures\Base::visibleForTestingWithPhpDoc should be called in private scope on no testing environment'),
                     10
-                ]
+                ],
+                [
+                    sprintf('VisibleForTesting annotated method Tests\Fixtures\Base::visibleForTestingWithAttribute should be called in private scope on no testing environment'),
+                    11
+                ],
+                [
+                    sprintf('VisibleForTesting annotated method Tests\Fixtures\Base::visibleForTestingWithPhpDoc should be called in private scope on no testing environment'),
+                    18
+                ],
+                [
+                    sprintf('VisibleForTesting annotated method Tests\Fixtures\Base::visibleForTestingWithAttribute should be called in private scope on no testing environment'),
+                    19
+                ],
             ]
         );
+    }
+
+    public function test_it_succeeds_when_testing(): void
+    {
+        putenv('__IS_TESTING_VISIBLE_FOR_TESTING=');
+
+        $this->analyse([__DIR__ . '/Fixtures/Failure.php'], []);
     }
 }

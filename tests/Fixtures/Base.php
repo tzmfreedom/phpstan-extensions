@@ -10,8 +10,11 @@ class Base
      * @return void
      * @visibleForTesting
      */
+    public function visibleForTestingWithPhpDoc(): void
+    {}
+
     #[VisibleForTesting]
-    public function visibleForTesting(): void
+    public function visibleForTestingWithAttribute(): void
     {}
 
     public function noVisibleForTesting(): void
@@ -25,7 +28,8 @@ class Base
 
     public function run(): void
     {
-        $this->visibleForTesting();
+        $this->visibleForTestingWithPhpDoc();
+        $this->visibleForTestingWithAttribute();
         $this->noVisibleForTesting();
         $this->noVisibleForTestingWithPHPDoc();
     }

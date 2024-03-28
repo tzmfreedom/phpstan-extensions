@@ -6,7 +6,8 @@ class Extend extends Base
 {
     public function run(): void
     {
-        $this->visibleForTesting();
+        $this->visibleForTestingWithPhpDoc();
+        $this->visibleForTestingWithAttribute();
         $this->noVisibleForTesting();
         $this->noVisibleForTestingWithPHPDoc();
     }
