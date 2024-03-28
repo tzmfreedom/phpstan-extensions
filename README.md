@@ -1,4 +1,4 @@
-## PHPStan-VisibleForTesting
+# PHPStan-VisibleForTesting
 
 PHPStan custom rules to ensure that [VisibleForTesting](https://github.com/tzmfreedom/phpstan-visible-for-testing/blob/main/src/Attributes/VisibleForTesting.php) annotated public methods are called in private/protected scopes outside of the test environment, inspired by @VisibleForTesting annotation on [Flutter](https://api.flutter.dev/flutter/meta/visibleForTesting-constant.html), Java ([Guava](https://github.com/google/guava))
 
@@ -22,7 +22,7 @@ class Foo
 }
 
 (new Foo)->exampleWithAttribute();
-// VisibleForTesting annotated method Foo::visibleForTestingWithAttribute should be called in private scope on no testing environment
+// VisibleForTesting annotated method Foo::visibleForTestingWithAttribute should be called in private scope outside of the test environment
 ```
 
 ## Installation
@@ -31,10 +31,9 @@ class Foo
 $ composer require --dev tzmfreedom/phpstan-visible-for-testing
 ```
 
+phpstan.neon
 ```neon
 rules:
 	- Tzmfreedom\PHPStan\VisibleForTestingRule
 ```
-
-## Example
 

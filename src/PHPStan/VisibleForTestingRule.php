@@ -45,12 +45,12 @@ class VisibleForTestingRule implements Rule
             return [];
         }
 
-        $message = sprintf('VisibleForTesting annotated method %s::%s should be called in private scope on no testing environment', $classReflection->getName(), $methodReflection->getName());
+        $message = sprintf('VisibleForTesting annotated method %s::%s should be called in private scope outside of the test environment', $classReflection->getName(), $methodReflection->getName());
         if (!$scope->isInClass()) {
             return [$message];
         }
 
-        if (!$scope->getClassReflection()->is($methodReflection->getDeclaringClass()->getName())) {
+        if ($scope->getClassReflection()->getName() !== $classReflection->getName()) {
             return [$message];
         }
         return [];
