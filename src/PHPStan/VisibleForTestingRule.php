@@ -7,6 +7,8 @@ use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\ExtendedMethodReflection;
+use PHPStan\Reflection\MissingMethodFromReflectionException;
+use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Rules\Methods\MethodCallCheck;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\FileTypeMapper;
@@ -16,7 +18,6 @@ use Tzmfreedom\Attributes\VisibleForTesting;
 class VisibleForTestingRule implements Rule
 {
     public function __construct(
-        private MethodCallCheck $methodCallCheck,
         private FileTypeMapper $fileTypeMapper,
     )
     {
@@ -29,11 +30,13 @@ class VisibleForTestingRule implements Rule
 
     public function processNode(Node $node, Scope $scope): array
     {
-        $methodName = (string)$node->name;
+        assert(is_a($node, MethodCall::class));
 
-        [$errors, $methodReflection] = $this->methodCallCheck->check($scope, $methodName, $node->var);
-        if ($methodReflection === null) {
-            return $errors;
+        $methodName = (string)$node->name;
+        try {
+            $methodReflection = $scope->getType($node->var)->getMethod($methodName, $scope);
+        } catch (MissingMethodFromReflectionException $e) {
+            return [];
         }
         if ($methodReflection->isPrivate()) {
             return [];

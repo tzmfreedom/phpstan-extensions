@@ -2,9 +2,7 @@
 
 namespace Tzmfreedom\Tests;
 
-use PHPStan\Rules\Methods\MethodCallCheck;
 use PHPStan\Rules\Rule;
-use PHPStan\Rules\RuleLevelHelper;
 use PHPStan\Testing\RuleTestCase;
 use PHPStan\Type\FileTypeMapper;
 use Tzmfreedom\PHPStan\VisibleForTestingRule;
@@ -13,11 +11,7 @@ final class VisibleForTestingRuleTest extends RuleTestCase
 {
     protected function getRule(): Rule
     {
-        $reflectionProvider = $this->createReflectionProvider();
-        $ruleLevelHelper = new RuleLevelHelper($reflectionProvider, true, false, true, true, true, true, false);
-        $callback = new MethodCallCheck($reflectionProvider, $ruleLevelHelper, true, true);
-
-        return new VisibleForTestingRule($callback, self::getContainer()->getByType(FileTypeMapper::class));
+        return new VisibleForTestingRule(self::getContainer()->getByType(FileTypeMapper::class));
     }
 
     public function test_it_succeeds_with_base_class(): void

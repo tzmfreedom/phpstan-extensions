@@ -19,3 +19,4 @@ $base->visibleForTestingWithPhpDoc();
 $base->visibleForTestingWithAttribute();
 $base->noVisibleForTesting();
 $base->noVisibleForTestingWithPHPDoc();
+$base->hoge();
