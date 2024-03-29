@@ -10,6 +10,7 @@ use PHPStan\Reflection\ExtendedMethodReflection;
 use PHPStan\Rules\Methods\MethodCallCheck;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\FileTypeMapper;
+use PHPUnit\Framework\TestCase;
 use Tzmfreedom\Attributes\VisibleForTesting;
 
 class VisibleForTestingRule implements Rule
@@ -28,19 +29,16 @@ class VisibleForTestingRule implements Rule
 
     public function processNode(Node $node, Scope $scope): array
     {
-        if ($this->isInRunningTest()) {
-            return [];
-        }
-        $methodName = (string) $node->name;
+        $methodName = (string)$node->name;
 
         [$errors, $methodReflection] = $this->methodCallCheck->check($scope, $methodName, $node->var);
         if ($methodReflection === null) {
             return $errors;
         }
-        $classReflection = $methodReflection->getDeclaringClass();
         if ($methodReflection->isPrivate()) {
             return [];
         }
+        $classReflection = $methodReflection->getDeclaringClass();
         if (!$this->hasVisibleForTestingAttribute($classReflection, $methodReflection)) {
             return [];
         }
@@ -49,7 +47,9 @@ class VisibleForTestingRule implements Rule
         if (!$scope->isInClass()) {
             return [$message];
         }
-
+        if ($scope->getClassReflection()->is(TestCase::class)) {
+            return [];
+        }
         if ($scope->getClassReflection()->getName() !== $classReflection->getName()) {
             return [$message];
         }
@@ -83,26 +83,5 @@ class VisibleForTestingRule implements Rule
             return false;
         }
         return true;
-    }
-
-    private function isInRunningTest()
-    {
-        if (getenv('__IS_TESTING_VISIBLE_FOR_TESTING')) {
-            return false;
-        }
-
-        if (PHP_SAPI !== 'cli') {
-            return false;
-        }
-
-        if (defined('PHPUNIT_COMPOSER_INSTALL') && defined('__PHPUNIT_PHAR__')) {
-            return true;
-        }
-
-        if (str_contains($_SERVER['argv'][0], 'phpunit')) {
-            return true;
-        }
-
-        return false;
     }
 }
