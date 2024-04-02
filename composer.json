@@ -1,10 +1,10 @@
 {
-    "name": "tzmfreedom/phpstan-visible-for-testing",
-    "description": "PHPStan custom rules to ensure that VisibleForTesting annotated public methods are called in private/protected scopes outside of the test environment",
-    "keywords": ["PHPStan", "VisibleForTesting", "static analysis"],
+    "name": "tzmfreedom/phpstan-extensions",
+    "description": "PHPStan extensions",
+    "keywords": ["PHPStan", "static analysis"],
     "type": "phpstan-extension",
     "license": "MIT",
-    "homepage": "https://github.com/tzmfreedom/phpstan-visible-for-testing",
+    "homepage": "https://github.com/tzmfreedom/phpstan-extensions",
     "autoload": {
         "psr-4": {
             "Tzmfreedom\\": "src/"
