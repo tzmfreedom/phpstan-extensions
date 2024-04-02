@@ -1,6 +1,6 @@
 <?php
 
-namespace Tzmfreedom\Tests\Fixtures;
+namespace Tzmfreedom\Tests\Fixtures\VisibleForTestingRule;
 
 use PHPUnit\Framework\TestCase;
 

@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Tzmfreedom\PHPStan;
+namespace Tzmfreedom\PHPStan\Rules;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
@@ -8,8 +8,6 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\ExtendedMethodReflection;
 use PHPStan\Reflection\MissingMethodFromReflectionException;
-use PHPStan\Reflection\ReflectionProvider;
-use PHPStan\Rules\Methods\MethodCallCheck;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\FileTypeMapper;
 use PHPUnit\Framework\TestCase;
