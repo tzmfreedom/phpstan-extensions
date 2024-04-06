@@ -47,7 +47,7 @@ $_ = (new Foo)->getString(); // OK
 ## Installation
 
 ```bash
-$ composer require --dev tzmfreedom/phpstan-visible-for-testing
+$ composer require --dev tzmfreedom/phpstan-extensions
 ```
 
 phpstan.neon

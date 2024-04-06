@@ -16,7 +16,6 @@ class UnusedReturnRule implements Rule
         return Expression::class;
     }
 
-    /** @var Expression $node */
     public function processNode(Node $node, Scope $scope): array
     {
         assert($node instanceof Expression);
