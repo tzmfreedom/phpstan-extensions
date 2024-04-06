@@ -12,9 +12,11 @@ use PHPStan\Type\BooleanType;
 use PHPStan\Type\FloatType;
 use PHPStan\Type\GeneralizePrecision;
 use PHPStan\Type\IntegerType;
+use PHPStan\Type\NullType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\StringType;
 use PHPStan\Type\Type;
+use PHPStan\Type\UnionType;
 
 class OverwriteDifferentTypeVariableRule implements Rule
 {
@@ -32,6 +34,15 @@ class OverwriteDifferentTypeVariableRule implements Rule
             $variableType = $scope->getVariableType($node->var->name)->generalize(GeneralizePrecision::lessSpecific());
             $exprType = $scope->getType($node->expr)->generalize(GeneralizePrecision::lessSpecific());
         } catch (UndefinedVariableException $e) {
+            return [];
+        }
+        if ($variableType instanceof UnionType && $variableType->isNull()) {
+            $variableType = $variableType->tryRemove(new NullType())->generalize(GeneralizePrecision::lessSpecific());
+        }
+        if ($variableType instanceof UnionType) {
+            return [];
+        }
+        if ($variableType instanceof NullType) {
             return [];
         }
         if ($variableType instanceof StringType && $exprType instanceof StringType) {

@@ -10,6 +10,12 @@ class Foo extends Base
 
 function hoge()
 {
+    $string = null;
+    if (random_int(0, 1)) {
+        $string = 1;
+    } else {
+        $string = 'hoge';
+    }
     $string = 'hoge';
     $string = 'fuga';
     $string = random_bytes(10);
