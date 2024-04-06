@@ -21,12 +21,16 @@ class ClassPropertyDeclarationRule implements Rule
     public function processNode(Node $node, Scope $scope): array
     {
         assert(is_a($node, Property::class));
-        foreach ($this->config as $key => $config) {
-            if (str_contains($scope->getFile(), $key) && in_array($node->props[0]->name->name, $config, true)) {
-                return [sprintf('Property declaration $%s is prohibited', $node->props[0]->name)];
+
+        $messages = [];
+        foreach ($node->props as $prop) {
+            $propertyName = $prop->name->name;
+            foreach ($this->config as $key => $config) {
+                if (str_contains($scope->getFile(), $key) && in_array($propertyName, $config, true)) {
+                    $messages[] = sprintf('Property declaration $%s is prohibited', $propertyName);
+                }
             }
         }
-
-        return [];
+        return $messages;
     }
 }

@@ -4,5 +4,5 @@ namespace Tzmfreedom\Tests\Fixtures\ClassPropertyDeclarationRule;
 
 class Base
 {
-    public $safe = [];
+    public array $safe = [];
 }

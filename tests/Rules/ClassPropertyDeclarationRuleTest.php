@@ -25,6 +25,10 @@ final class ClassPropertyDeclarationRuleTest extends RuleTestCase
     {
         $this->analyse([__DIR__ . '/../Fixtures/ClassPropertyDeclarationRule/Failure.php'], [
             [
+                'Property declaration $safe is prohibited',
+                7,
+            ],
+            [
                 'Property declaration $prohibit is prohibited',
                 7,
             ],

@@ -4,5 +4,5 @@ namespace Tzmfreedom\Tests\Fixtures\ClassPropertyDeclarationRule;
 
 class Failure
 {
-    public $prohibit = [];
+    public array $safe, $prohibit = [];
 }
