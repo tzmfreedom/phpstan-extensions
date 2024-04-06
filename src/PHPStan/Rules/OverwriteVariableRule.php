@@ -27,7 +27,7 @@ class OverwriteVariableRule implements Rule
             if ($variableType->isNull()->yes()) {
                 return [];
             }
-            return [sprintf('Variable should be assigned just once. var name $%s', $node->var->name)];
+            return [sprintf('Variable $%s should be assigned just once.', $node->var->name)];
         } catch (UndefinedVariableException $e) {
             return [];
         }

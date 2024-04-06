@@ -22,15 +22,15 @@ final class OverwriteDifferentTypeVariableRuleTest extends RuleTestCase
     {
         $this->analyse([__DIR__ . '/../Fixtures/OverwriteDifferentTypeVariableRule/Failure.php'], [
             [
-                'Assign type is different. assigned type: String, expression type: Integer',
+                'Assign type String is different from expression type Integer.',
                 14,
             ],
             [
-                'Assign type is different. assigned type: Integer, expression type: Boolean',
+                'Assign type Integer is different from expression type Boolean.',
                 15,
             ],
             [
-                'Assign type is different. assigned type: Boolean, expression type: Object',
+                'Assign type Boolean is different from expression type Object.',
                 16,
             ],
         ]);

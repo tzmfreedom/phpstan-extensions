@@ -22,11 +22,11 @@ final class OverwriteVariableRuleTest extends RuleTestCase
     {
         $this->analyse([__DIR__ . '/../Fixtures/OverwriteVariableRule/Failure.php'], [
             [
-                'Variable should be assigned just once. var name $var',
+                'Variable $var should be assigned just once.',
                 8,
             ],
             [
-                'Variable should be assigned just once. var name $var',
+                'Variable $var should be assigned just once.',
                 9,
             ],
         ]);

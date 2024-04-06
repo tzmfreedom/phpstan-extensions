@@ -56,13 +56,13 @@ class OverwriteDifferentTypeVariableRule implements Rule
         }
         if ($variableType instanceof ObjectType && $exprType instanceof ObjectType) {
             if ($variableType->isSuperTypeOf($exprType)->no() && $exprType->isSuperTypeOf($variableType)->no()) {
-                return [sprintf('Object type is different. assigned type: %s, expression type: %s', $variableType->getClassName(), $exprType->getClassName())];
+                return [sprintf('Assigned object type %s is different from expression object type %s.', $variableType->getClassName(), $exprType->getClassName())];
             }
             return [];
         }
         $variableTypeClassName = $this->getClassName($variableType);
         $expressionTypeClassName = $this->getClassName($exprType);
-        return [sprintf('Assign type is different. assigned type: %s, expression type: %s', $variableTypeClassName, $expressionTypeClassName)];
+        return [sprintf('Assign type %s is different from expression type %s.', $variableTypeClassName, $expressionTypeClassName)];
     }
 
     private function isNumberType(Type $type): bool
