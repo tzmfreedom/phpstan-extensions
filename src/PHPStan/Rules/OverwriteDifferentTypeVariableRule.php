@@ -36,7 +36,7 @@ class OverwriteDifferentTypeVariableRule implements Rule
         } catch (UndefinedVariableException $e) {
             return [];
         }
-        if ($variableType instanceof UnionType && $variableType->isNull()) {
+        if ($variableType instanceof UnionType && !$variableType->isNull()->no()) {
             $variableType = $variableType->tryRemove(new NullType())->generalize(GeneralizePrecision::lessSpecific());
         }
         if ($variableType instanceof UnionType) {
