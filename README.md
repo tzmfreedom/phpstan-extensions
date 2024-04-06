@@ -44,6 +44,32 @@ class Foo
 $_ = (new Foo)->getString(); // OK
 ```
 
+## OverwriteVariableRule 
+
+```php
+<?php
+
+$var = null;
+$var = 'hoge'; // OK, changing from null to any
+$var = 'fuga'; // NG
+```
+
+## OverwriteDifferentTypeVariableRule
+
+```php
+<?php
+
+$var = null;
+$var = 'hoge'; // OK, changing from null to any
+$var = 1; // NG, changing from string to integer
+$var = 1.0; // OK, changing from integer to float
+$var = 1; // OK, changeing from float to integer
+$var = new \stdClass(); // NG
+$var = new class extends \stdClass{}; // OK
+$var = new \stdClass(); // OK
+```
+
+
 ## Installation
 
 ```bash
