@@ -4,7 +4,9 @@ namespace Tzmfreedom\PHPStan\Rules;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\Array_;
+use PhpParser\Node\Expr\ArrayDimFetch;
 use PhpParser\Node\Expr\Assign;
+use PhpParser\Node\Expr\PropertyFetch;
 use PhpParser\Node\Expr\Variable;
 use PHPStan\Analyser\Scope;
 use PHPStan\Analyser\UndefinedVariableException;
@@ -39,6 +41,12 @@ class OverwriteDifferentTypeVariableRule implements Rule
                 $exprType = $scope->getType($node->expr)->generalize(GeneralizePrecision::lessSpecific());
                 return $this->checkAssignment($variableType, $exprType);
             } else if ($node->var instanceof Array_) {
+                // TODO: implement
+                return [];
+            } else if ($node->var instanceof PropertyFetch) {
+                // TODO: implement
+                return [];
+            } else if ($node->var instanceof ArrayDimFetch) {
                 // TODO: implement
                 return [];
             } else {

@@ -11,6 +11,7 @@ use PHPStan\Reflection\MissingMethodFromReflectionException;
 use PHPStan\Rules\Rule;
 use PHPStan\Type\FileTypeMapper;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 use Tzmfreedom\Attributes\VisibleForTesting;
 
 class VisibleForTestingRule implements Rule
@@ -59,11 +60,15 @@ class VisibleForTestingRule implements Rule
 
     private function hasVisibleForTestingAttribute(ClassReflection $classReflection, ExtendedMethodReflection $methodReflection): bool
     {
-        $attributes = $classReflection->getNativeReflection()
-            ->getMethod($methodReflection->getName())
-            ->getAttributes(VisibleForTesting::class);
-        if (count($attributes) > 0) {
-            return true;
+        try {
+            $attributes = $classReflection->getNativeReflection()
+                ->getMethod($methodReflection->getName())
+                ->getAttributes(VisibleForTesting::class);
+            if (count($attributes) > 0) {
+                return true;
+            }
+        } catch (ReflectionException $e) {
+            return false;
         }
         if ($methodReflection->getDocComment() === null) {
             return false;
