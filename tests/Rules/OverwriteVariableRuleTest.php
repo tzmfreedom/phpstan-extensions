@@ -29,6 +29,10 @@ final class OverwriteVariableRuleTest extends RuleTestCase
                 'Variable $var should be assigned just once.',
                 9,
             ],
+            [
+                'Variable $var should be assigned just once.',
+                11,
+            ],
         ]);
     }
 }

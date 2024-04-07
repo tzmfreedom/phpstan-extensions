@@ -8,4 +8,5 @@ function hoge()
     $var = 1;
     $var = null;
     $var = 1;
+    [,$var] = [1, 2];
 }
