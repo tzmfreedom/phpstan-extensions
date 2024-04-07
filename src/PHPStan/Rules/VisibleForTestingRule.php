@@ -4,6 +4,7 @@ namespace Tzmfreedom\PHPStan\Rules;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
+use PhpParser\Node\Expr\Variable;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\ExtendedMethodReflection;
@@ -31,6 +32,9 @@ class VisibleForTestingRule implements Rule
     {
         assert(is_a($node, MethodCall::class));
 
+        if ($node->name instanceof Variable) {
+            return [];
+        }
         $methodName = (string)$node->name;
         try {
             $methodReflection = $scope->getType($node->var)->getMethod($methodName, $scope);

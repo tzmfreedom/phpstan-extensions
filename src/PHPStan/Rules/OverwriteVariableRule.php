@@ -6,6 +6,7 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\Array_;
 use PhpParser\Node\Expr\ArrayDimFetch;
 use PhpParser\Node\Expr\Assign;
+use PhpParser\Node\Expr\List_;
 use PhpParser\Node\Expr\PropertyFetch;
 use PhpParser\Node\Expr\Variable;
 use PHPStan\Analyser\Scope;
@@ -45,7 +46,7 @@ class OverwriteVariableRule implements Rule
                     }
                 }
                 return $messages;
-            } else if ($node->var instanceof PropertyFetch || $node->var instanceof ArrayDimFetch) {
+            } else if ($node->var instanceof PropertyFetch || $node->var instanceof ArrayDimFetch || $node->var instanceof List_) {
                 return [];
             }
             throw new \Exception(sprintf('Unexpected type: %s', get_class($node->var)));
