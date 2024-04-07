@@ -6,6 +6,7 @@ use PhpParser\Node;
 use PhpParser\Node\Expr\Array_;
 use PhpParser\Node\Expr\ArrayDimFetch;
 use PhpParser\Node\Expr\Assign;
+use PhpParser\Node\Expr\List_;
 use PhpParser\Node\Expr\PropertyFetch;
 use PhpParser\Node\Expr\Variable;
 use PHPStan\Analyser\Scope;
@@ -47,6 +48,9 @@ class OverwriteDifferentTypeVariableRule implements Rule
                 // TODO: implement
                 return [];
             } else if ($node->var instanceof ArrayDimFetch) {
+                // TODO: implement
+                return [];
+            } else if ($node->var instanceof List_) {
                 // TODO: implement
                 return [];
             } else {

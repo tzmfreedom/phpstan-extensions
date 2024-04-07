@@ -4,7 +4,7 @@ namespace Tzmfreedom\PHPStan\Rules;
 
 use PhpParser\Node;
 use PhpParser\Node\Expr\MethodCall;
-use PhpParser\Node\Expr\Variable;
+use PhpParser\Node\Identifier;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\ExtendedMethodReflection;
@@ -32,7 +32,7 @@ class VisibleForTestingRule implements Rule
     {
         assert(is_a($node, MethodCall::class));
 
-        if ($node->name instanceof Variable) {
+        if (!$node->name instanceof Identifier) {
             return [];
         }
         $methodName = (string)$node->name;
