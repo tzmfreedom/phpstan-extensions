@@ -33,6 +33,10 @@ final class OverwriteDifferentTypeVariableRuleTest extends RuleTestCase
                 'Assign type Boolean is different from expression type Object.',
                 16,
             ],
+            [
+                'Assigned object type stdClass is different from expression object type Tzmfreedom\Tests\Fixtures\OverwriteDifferentTypeVariableRule\Failure.',
+                17,
+            ]
         ]);
     }
 }

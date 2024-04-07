@@ -3,6 +3,7 @@
 namespace Tzmfreedom\PHPStan\Rules;
 
 use PhpParser\Node;
+use PhpParser\Node\Expr\Array_;
 use PhpParser\Node\Expr\Assign;
 use PhpParser\Node\Expr\Variable;
 use PHPStan\Analyser\Scope;
@@ -28,17 +29,28 @@ class OverwriteDifferentTypeVariableRule implements Rule
     public function processNode(Node $node, Scope $scope): array
     {
         assert($node instanceof Assign);
-        assert($node->var instanceof Variable);
 
         try {
-            $variableType = $scope->getVariableType($node->var->name)->generalize(GeneralizePrecision::lessSpecific());
-            $exprType = $scope->getType($node->expr)->generalize(GeneralizePrecision::lessSpecific());
+            if ($node->var instanceof Variable) {
+                $variableType = $scope->getVariableType($node->var->name)->generalize(GeneralizePrecision::lessSpecific());
+                if ($variableType instanceof UnionType && !$variableType->isNull()->no()) {
+                    $variableType = $variableType->tryRemove(new NullType())->generalize(GeneralizePrecision::lessSpecific());
+                }
+                $exprType = $scope->getType($node->expr)->generalize(GeneralizePrecision::lessSpecific());
+                return $this->checkAssignment($variableType, $exprType);
+            } else if ($node->var instanceof Array_) {
+                // TODO: implement
+                return [];
+            } else {
+                throw new \Exception(sprintf('Unexpected type: %s', get_class($node->var)));
+            }
         } catch (UndefinedVariableException $e) {
             return [];
         }
-        if ($variableType instanceof UnionType && !$variableType->isNull()->no()) {
-            $variableType = $variableType->tryRemove(new NullType())->generalize(GeneralizePrecision::lessSpecific());
-        }
+    }
+
+    private function checkAssignment(Type $variableType, Type $exprType): array
+    {
         if ($variableType instanceof UnionType) {
             return [];
         }
